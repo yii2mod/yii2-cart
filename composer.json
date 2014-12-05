@@ -1,0 +1,19 @@
+{
+    "name": "yii2mod/yii2-cart",
+    "description": "Yii2 Shopping cart",
+    "type": "yii2-extension",
+    "authors": [
+        {
+            "name": "Dmitry Semenov",
+            "email": "disemx@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "yii2mod\\cart\\": ""
+        }
+    }
+}
