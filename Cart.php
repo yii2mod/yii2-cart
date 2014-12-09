@@ -4,9 +4,7 @@ namespace yii2mod\cart;
 use yii\base\Component;
 use yii\base\InvalidParamException;
 use yii\web\Session;
-use yii2mod\cart\models\CartDiscountInterface;
 use yii2mod\cart\models\CartItemInterface;
-use yii2mod\cart\models\OrderInterface;
 
 /**
  * Provides basic cart functionality (adding, removing, clearing, listing items). You can extend this class and
@@ -179,7 +177,7 @@ class Cart extends Component
      * @param string      $attribute
      * @param string|null $itemType
      *
-     * @return int|float
+     * @return integer
      */
     public function getAttributeTotal($attribute, $itemType = null)
     {
