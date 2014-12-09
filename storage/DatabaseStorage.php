@@ -1,8 +1,4 @@
 <?php
-/**
- * @date   31.01.14
- */
-
 namespace yii2mod\cart\storage;
 
 use yii\base\InvalidConfigException;
@@ -22,7 +18,7 @@ use yii2mod\cart\Cart;
  * fails, or if $userComponent is not set, it will use sessionId as user identifier
  * @package yii2mod\cart\cart\storage
  */
-class Database extends Object implements StorageInterface
+class DatabaseStorage extends Object implements StorageInterface
 {
     /**
      * @var string Name of the user component

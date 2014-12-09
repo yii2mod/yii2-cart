@@ -1,10 +1,7 @@
-<?php yii\widgets\Pjax::begin([
-    'id' => 'cartContainer',
-    'enablePushState' => false,
-    'timeout' => 3000,
-    'clientOptions' => ['url' => '/cart/view']
-]); ?>
-<?php echo yii2mod\cart\widgets\CartGridView::widget([
-    'cart' => $cart
-]); ?>
-<?php Pjax::end(); ?>
+<?php \yii\widgets\Pjax::begin(['timeout' => 3000]); ?>
+<?php echo \yii\grid\GridView::widget([
+    'dataProvider' => $cartDataProvider,
+    'columns' => $cartColumns
+]);
+?>
+<?php \yii\widgets\Pjax::end(); ?>

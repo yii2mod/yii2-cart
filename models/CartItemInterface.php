@@ -9,13 +9,12 @@ interface CartItemInterface
 {
     /**
      * Returns the label for the cart item (displayed in cart etc)
-     *
      * @return string
      */
     public function getLabel();
+
     /**
      * Returns unique id to associate cart item with product
-     *
      * @return string
      */
     public function getUniqueId();

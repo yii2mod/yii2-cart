@@ -1,22 +1,20 @@
 <?php
-/**
- * @date   23.01.14
- */
-
 namespace yii2mod\cart\storage;
 
+use yii\base\Object;
 use yii2mod\cart\Cart;
 
 /**
  * Class SessionStorage
+ * @property \yii\web\Session session
  * @package yii2mod\cart\cart
  */
-class Session implements StorageInterface
+class SessionStorage extends Object implements StorageInterface
 {
     /**
      * @var string
      */
-    public $cartVar = 'cart';
+    public $key = 'cart';
 
     /**
      * @inheritdoc
@@ -24,7 +22,7 @@ class Session implements StorageInterface
     public function load(Cart $cart)
     {
         $cartData = [];
-        if (false !== ($session = ($cart->session->get($this->cartVar, false)))) {
+        if (false !== ($session = ($this->session->get($this->key, false)))) {
             $cartData = unserialize($session);
         }
         return $cartData;
@@ -36,6 +34,14 @@ class Session implements StorageInterface
     public function save(Cart $cart)
     {
         $sessionData = serialize($cart->getItems());
-        $cart->session->set($this->cartVar, $sessionData);
+        $this->session->set($this->key, $sessionData);
+    }
+
+    /**
+     * @return \yii\web\Session
+     */
+    public function getSession()
+    {
+        return \Yii::$app->get('session');
     }
 }

@@ -46,9 +46,9 @@ var cartManager = {
     },
     /**
      * Remove product from cart
-     * @param string
+     * @param dataKey
      */
-    delete: function (dataKey) {
+    remove: function (dataKey) {
         $.ajax({
             url: this.removeActionUrl,
             type: "POST",
