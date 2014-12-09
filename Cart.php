@@ -165,8 +165,6 @@ class Cart extends Component
         if (!is_null($itemType)) {
             $items = array_filter($items,
                 function ($item) use ($itemType) {
-                    var_dump(get_class($item));
-                    var_dump($itemType);
                     /** @var $item CartItemInterface */
                     return is_subclass_of($item, $itemType);
                 });
