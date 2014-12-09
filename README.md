@@ -1,5 +1,7 @@
 Shopping cart extension for Yii2
 =========
+[![Code Climate](https://codeclimate.com/github/yii2mod/yii2-cart/badges/gpa.svg)](https://codeclimate.com/github/yii2mod/yii2-cart) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/?branch=master)
+
 @todo: upgrade readme
 
 ### Using the shopping cart
