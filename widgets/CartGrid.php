@@ -46,8 +46,6 @@ class CartGrid extends Widget
     {
         $cart = \Yii::$app->get('cart');
 
-        CartAsset::register($this->view);
-
         if (!isset($this->cartDataProvider)) {
             $this->cartDataProvider = new ArrayDataProvider([
                 'allModels' => $cart->getItems($this->itemType),
