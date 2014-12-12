@@ -3,6 +3,7 @@ namespace yii2mod\cart\widgets;
 
 use yii\base\Widget;
 use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 use yii2mod\cart\assets\CartAsset;
 use yii2mod\cart\Cart;
 
@@ -12,15 +13,26 @@ use yii2mod\cart\Cart;
  */
 class CartGrid extends Widget
 {
+
     /**
      * @var
      */
     public $cartDataProvider;
+
     /**
+     * Grid view olumns
      * @var
      */
-    public $cartColumns;
+    public $cartColumns = [
+        'id',
+        'label',
+    ];
 
+    /**
+     * GridView options
+     * @var array
+     */
+    public $gridOptions = [];
 
     /**
      * @var string Only items of that type will be rendered. Defaults to Cart::ITEM_PRODUCT
@@ -42,10 +54,6 @@ class CartGrid extends Widget
                 'pagination' => false,
             ]);
         }
-        $this->cartColumns = [
-            'id',
-            'label',
-        ];
     }
 
     /**
@@ -54,8 +62,18 @@ class CartGrid extends Widget
     public function run()
     {
         return $this->render('cart', [
-            'cartDataProvider' => $this->cartDataProvider,
-            'cartColumns' => $this->cartColumns,
+            'gridOptions' => $this->getGridOptions(),
+        ]);
+    }
+
+    /**
+     * Get grid options
+     */
+    public function getGridOptions()
+    {
+        return ArrayHelper::merge($this->gridOptions, [
+            'dataProvider' => $this->cartDataProvider,
+            'columns' => $this->cartColumns
         ]);
     }
 }

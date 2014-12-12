@@ -1,4 +1,5 @@
 <?php
+
 namespace yii2mod\cart\assets;
 
 use yii\web\AssetBundle;
@@ -15,13 +16,18 @@ class CartAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@vendor/yii2mod/yii2-cart/assets';
+    public $basePath = '@webroot';
+
+    /**
+     * @var string
+     */
+    public $baseUrl = '@web';
 
     /**
      * @var array
      */
     public $js = [
-        'js/cart.js'
+
     ];
 
     public $jsOptions = [
