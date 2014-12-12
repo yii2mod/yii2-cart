@@ -4,7 +4,6 @@ namespace yii2mod\cart\widgets;
 use yii\base\Widget;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
-use yii2mod\cart\assets\CartAsset;
 use yii2mod\cart\Cart;
 
 /**
