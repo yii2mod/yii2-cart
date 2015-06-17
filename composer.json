@@ -2,6 +2,7 @@
     "name": "yii2mod/yii2-cart",
     "description": "Yii2 Shopping cart",
     "type": "yii2-extension",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dmitry Semenov",
