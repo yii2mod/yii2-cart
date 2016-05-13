@@ -1,8 +1,29 @@
 Shopping cart extension for Yii2
-=========
-[![Code Climate](https://codeclimate.com/github/yii2mod/yii2-cart/badges/gpa.svg)](https://codeclimate.com/github/yii2mod/yii2-cart) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/?branch=master)
+===============================
 
-@todo: upgrade readme
+This extension adds shopping cart for Yii framework 2.0
+
+[![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-cart/v/stable)](https://packagist.org/packages/yii2mod/yii2-cart) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-cart/downloads)](https://packagist.org/packages/yii2mod/yii2-cart) [![License](https://poser.pugx.org/yii2mod/yii2-cart/license)](https://packagist.org/packages/yii2mod/yii2-cart)
+[![Code Climate](https://codeclimate.com/github/yii2mod/yii2-cart/badges/gpa.svg)](https://codeclimate.com/github/yii2mod/yii2-cart)
+
+Installation
+------------
+
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
+```
+php composer.phar require --prefer-dist yii2mod/yii2-cart "*"
+```
+
+or add
+
+```
+"yii2mod/yii2-cart": "*"
+```
+
+to the require section of your `composer.json` file.
 
 ### Using the shopping cart
 Operations with the shopping cart are very straightforward when using a models that implement one of the two cart interfaces.
