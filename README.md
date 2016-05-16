@@ -27,7 +27,7 @@ to the require section of your `composer.json` file.
 
 ### Configuration
 
-1. Configure the ```cart``` component:
+1) Configure the ```cart``` component:
 ```php
 return [
     //....
@@ -38,7 +38,7 @@ return [
     ]
 ];
 ```
-2. Create the Product Model that implements an `CartItemInterface`:
+2) Create the Product Model that implements an `CartItemInterface`:
 ```php
 class ProductModel extends ActiveRecord implements CartItemInterface
 {
