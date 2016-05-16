@@ -1,6 +1,8 @@
 <?php
+
 namespace yii2mod\cart\storage;
 
+use Yii;
 use yii\base\Object;
 use yii2mod\cart\Cart;
 
@@ -42,6 +44,6 @@ class SessionStorage extends Object implements StorageInterface
      */
     public function getSession()
     {
-        return \Yii::$app->get('session');
+        return Yii::$app->get('session');
     }
 }

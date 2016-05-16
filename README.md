@@ -25,6 +25,46 @@ or add
 
 to the require section of your `composer.json` file.
 
+### Configuration
+
+1. Configure the ```cart``` component:
+```php
+return [
+    //....
+    'components' => [
+        'cart' => [
+            'class' => 'yii2mod\cart\Cart'
+        ],
+    ]
+];
+```
+2. Create the Product Model that implements an `CartItemInterface`:
+```php
+class ProductModel extends ActiveRecord implements CartItemInterface
+{
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function getLabel()
+    {
+        return $this->name;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+```
+
+> If you use the yii2mod\cart\storage\DatabaseStorage as ```storageClass``` then you need to apply the following migration:
+```php
+php yii migrate --migrationPath=@vendor/yii2mod/yii2-cart/migrations
+```
+
 ### Using the shopping cart
 Operations with the shopping cart are very straightforward when using a models that implement one of the two cart interfaces.
 The cart object can be accessed under `\Yii::$app->cart` and can be overridden in configuration if you need to customize it.
@@ -33,7 +73,7 @@ The cart object can be accessed under `\Yii::$app->cart` and can be overridden i
 $cart = \Yii::$app->cart;
 
 // Product is an AR model implementing CartProductInterface
-$product = Product::find(1);
+$product = Product::findOne(1);
 
 // add an item to the cart
 $cart->add($product);

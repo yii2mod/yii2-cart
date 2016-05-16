@@ -1,4 +1,5 @@
 <?php
+
 namespace yii2mod\cart\models;
 
 /**
@@ -7,6 +8,12 @@ namespace yii2mod\cart\models;
  */
 interface CartItemInterface
 {
+    /**
+     * Returns the price for the cart item
+     * @return integer
+     */
+    public function getPrice();
+
     /**
      * Returns the label for the cart item (displayed in cart etc)
      * @return string

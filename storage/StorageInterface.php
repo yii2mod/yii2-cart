@@ -1,4 +1,5 @@
 <?php
+
 namespace yii2mod\cart\storage;
 
 use yii2mod\cart\Cart;

@@ -1,6 +1,8 @@
 <?php
+
 namespace yii2mod\cart\storage;
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Object;
 use yii\db\Connection;
@@ -24,6 +26,7 @@ class DatabaseStorage extends Object implements StorageInterface
      * @var string Name of the user component
      */
     public $userComponent = 'user';
+
     /**
      * @var string Name of the database component
      */
@@ -53,6 +56,7 @@ class DatabaseStorage extends Object implements StorageInterface
      * @var Connection
      */
     private $db;
+
     /**
      * @var User
      */
@@ -64,10 +68,10 @@ class DatabaseStorage extends Object implements StorageInterface
     public function init()
     {
         parent::init();
-        $this->db = \Yii::$app->get($this->dbComponent);
+        $this->db = Yii::$app->get($this->dbComponent);
 
         if (isset($this->userComponent)) {
-            $this->user = \Yii::$app->get($this->userComponent);
+            $this->user = Yii::$app->get($this->userComponent);
         }
 
         if (!isset($this->table)) {
@@ -82,13 +86,10 @@ class DatabaseStorage extends Object implements StorageInterface
      */
     public function load(Cart $cart)
     {
-        $session = $cart->getSession();
-        $identifier = $this->getIdentifier($session->getId());
-
         $query = new Query();
         $query->select($this->dataField)
             ->from($this->table)
-            ->where([$this->idField => $identifier]);
+            ->where([$this->idField => Yii::$app->session->getId()]);
 
         $items = [];
 
@@ -120,8 +121,7 @@ class DatabaseStorage extends Object implements StorageInterface
      */
     public function save(Cart $cart)
     {
-        $session = $cart->getSession();
-        $identifier = $this->getIdentifier($session->getId());
+        $identifier = $this->getIdentifier(Yii::$app->session->getId());
 
         $items = $cart->getItems();
         $sessionData = serialize($items);

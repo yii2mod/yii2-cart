@@ -1,3 +1,12 @@
-<?php \yii\widgets\Pjax::begin(['timeout' => 3000, 'id' => 'pjax-cart-container']); ?>
-<?php echo \yii\grid\GridView::widget($gridOptions); ?>
-<?php \yii\widgets\Pjax::end(); ?>
+<?php
+
+use yii\grid\GridView;
+use yii\widgets\Pjax;
+
+/* @var $this \yii\web\View */
+/* @var $gridOptions array */
+
+?>
+<?php Pjax::begin(['timeout' => 5000, 'id' => 'pjax-cart-container']); ?>
+<?php echo GridView::widget($gridOptions); ?>
+<?php Pjax::end(); ?>

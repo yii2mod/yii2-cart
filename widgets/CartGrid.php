@@ -1,6 +1,8 @@
 <?php
+
 namespace yii2mod\cart\widgets;
 
+use Yii;
 use yii\base\Widget;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
@@ -19,7 +21,7 @@ class CartGrid extends Widget
     public $cartDataProvider;
 
     /**
-     * Grid view olumns
+     * Grid view columns
      * @var
      */
     public $cartColumns = [
@@ -43,7 +45,7 @@ class CartGrid extends Widget
      */
     public function init()
     {
-        $cart = \Yii::$app->get('cart');
+        $cart = Yii::$app->get('cart');
 
         if (!isset($this->cartDataProvider)) {
             $this->cartDataProvider = new ArrayDataProvider([

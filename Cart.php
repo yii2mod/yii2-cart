@@ -1,6 +1,8 @@
 <?php
+
 namespace yii2mod\cart;
 
+use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
 use yii\web\Session;
@@ -10,25 +12,23 @@ use yii2mod\cart\models\CartItemInterface;
  * Provides basic cart functionality (adding, removing, clearing, listing items). You can extend this class and
  * override it in the application configuration to extend/customize the functionality
  * @package yii2mod\cart
- * @property int     $count
+ * @property int $count
  * @property Session $session
  */
 class Cart extends Component
 {
-
     /**
-     * @var interface class
+     * @var string CartItemInterface class name
      */
     const ITEM_PRODUCT = '\yii2mod\cart\models\CartItemInterface';
 
-
     /**
-     * @var array
+     * @var array cart items
      */
     protected $items;
 
     /**
-     * @var null
+     * @var \yii2mod\cart\storage\DatabaseStorage
      */
     private $storage = null;
 
@@ -44,7 +44,7 @@ class Cart extends Component
     public function init()
     {
         $this->clear(false);
-        $this->setStorage(\Yii::createObject($this->storageClass));
+        $this->setStorage(Yii::createObject($this->storageClass));
         $this->items = $this->storage->load($this);
     }
 
@@ -98,7 +98,7 @@ class Cart extends Component
      * Add an item to the cart
      *
      * @param models\CartItemInterface $element
-     * @param bool                     $save
+     * @param bool $save
      *
      * @return $this
      */
@@ -124,7 +124,7 @@ class Cart extends Component
      * Removes an item from the cart
      *
      * @param string $uniqueId
-     * @param bool   $save
+     * @param bool $save
      *
      * @throws \yii\base\InvalidParamException
      * @return $this
@@ -174,7 +174,7 @@ class Cart extends Component
     /**
      * Finds all items of type $itemType, sums the values of $attribute of all models and returns the sum.
      *
-     * @param string      $attribute
+     * @param string $attribute
      * @param string|null $itemType
      *
      * @return integer
