@@ -86,10 +86,12 @@ class DatabaseStorage extends Object implements StorageInterface
      */
     public function load(Cart $cart)
     {
+        $identifier = $this->getIdentifier(Yii::$app->session->getId());
+
         $query = new Query();
         $query->select($this->dataField)
             ->from($this->table)
-            ->where([$this->idField => Yii::$app->session->getId()]);
+            ->where([$this->idField => $identifier]);
 
         $items = [];
 
