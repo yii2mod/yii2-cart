@@ -53,7 +53,7 @@ class ProductModel extends ActiveRecord implements CartItemInterface
         return $this->name;
     }
 
-    public function getId()
+    public function getUniqueId()
     {
         return $this->id;
     }
