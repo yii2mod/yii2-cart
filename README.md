@@ -5,6 +5,7 @@ This extension adds shopping cart for Yii framework 2.0
 
 [![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-cart/v/stable)](https://packagist.org/packages/yii2mod/yii2-cart) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-cart/downloads)](https://packagist.org/packages/yii2mod/yii2-cart) [![License](https://poser.pugx.org/yii2mod/yii2-cart/license)](https://packagist.org/packages/yii2mod/yii2-cart)
 [![Code Climate](https://codeclimate.com/github/yii2mod/yii2-cart/badges/gpa.svg)](https://codeclimate.com/github/yii2mod/yii2-cart)
+[![Build Status](https://travis-ci.org/yii2mod/yii2-cart.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-cart)
 
 Installation
 ------------
