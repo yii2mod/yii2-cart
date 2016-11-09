@@ -34,7 +34,13 @@ return [
     //....
     'components' => [
         'cart' => [
-            'class' => 'yii2mod\cart\Cart'
+            'class' => 'yii2mod\cart\Cart',
+            // you can change default storage class as following:
+            'storageClass' => [
+                'class' => 'yii2mod\cart\storage\DatabaseStorage',
+                // you can also override some properties 
+                'deleteIfEmpty' => true
+            ]
         ],
     ]
 ];
@@ -85,8 +91,21 @@ $totalVat = $cart->getAttributeTotal('vat');
 // clear the cart
 $cart->clear();
 
-// render the contents of the cart with default parameters
-echo \yii2mod\cart\widgets\CartGrid::widget();
+```
+
+#### View Cart Items
+
+You can use the `CartGrid` widget for generate table with cart items as following:
+```php
+<?php echo \yii2mod\cart\widgets\CartGrid::widget([
+    // Some widget property maybe need to change. 
+    'cartColumns' => [
+        'id',
+        'label',
+        'price'
+    ]
+]); ?>
+
 ```
 
 #### Items in the cart
