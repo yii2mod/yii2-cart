@@ -3,7 +3,7 @@
 namespace yii2mod\cart\tests;
 
 use Yii;
-use yii2mod\cart\tests\data\ProductModel;
+use yii2mod\cart\tests\data\Product;
 
 /**
  * Class CartTest
@@ -19,7 +19,7 @@ class CartTest extends TestCase
     public function testAddItem()
     {
         $cart = Yii::$app->cart;
-        $product = ProductModel::findOne(1);
+        $product = Product::findOne(1);
         $cart->add($product);
 
         $this->assertContains($product, $cart->getItems());
@@ -28,7 +28,7 @@ class CartTest extends TestCase
     public function testRemoveItem()
     {
         $cart = Yii::$app->cart;
-        $product = ProductModel::findOne(1);
+        $product = Product::findOne(1);
         $cart->add($product);
 
         $this->assertContains($product, $cart->getItems());
@@ -40,7 +40,7 @@ class CartTest extends TestCase
     public function testClearCart()
     {
         $cart = Yii::$app->cart;
-        $product = ProductModel::findOne(1);
+        $product = Product::findOne(1);
         $cart->add($product);
 
         $this->assertEquals(1, $cart->getCount());

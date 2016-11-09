@@ -6,20 +6,19 @@ use yii2mod\cart\Cart;
 
 /**
  * Interface StorageInterface
- * @package yii2mod\cart\cart
+ * @package yii2mod\cart\storage
  */
 interface StorageInterface
 {
-
     /**
-     * @param \yii2mod\cart\Cart $cart
+     * @param Cart $cart
      *
-     * @return void
+     * @return array|mixed
      */
     public function load(Cart $cart);
 
     /**
-     * @param \yii2mod\cart\Cart $cart
+     * @param Cart $cart
      *
      * @return void
      */

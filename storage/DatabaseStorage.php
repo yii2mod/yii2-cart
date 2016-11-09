@@ -11,14 +11,12 @@ use yii\web\User;
 use yii2mod\cart\Cart;
 
 /**
- * Database-adapter for cart data storage. Assumes the existence of a table similar to:
- * CREATE TABLE `Cart` (
- *    `sessionId` varchar(255) NOT NULL,
- *    `cartData` blob NOT NULL,
- *    PRIMARY KEY (`sessionId`)) ENGINE=InnoDB;
+ * Class DatabaseStorage is a database adapter for cart data storage.
+ *
  * If userComponent is set, it tries to call getId() from the component and use the result as user identifier. If it
  * fails, or if $userComponent is not set, it will use sessionId as user identifier
- * @package yii2mod\cart\cart\storage
+ *
+ * @package yii2mod\cart\storage
  */
 class DatabaseStorage extends Object implements StorageInterface
 {
@@ -35,7 +33,7 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @var string Name of the cart table
      */
-    public $table = 'Cart';
+    public $table = 'cart';
 
     /**
      * @var string Name of the
@@ -55,12 +53,12 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @var Connection
      */
-    private $db;
+    private $_db;
 
     /**
      * @var User
      */
-    private $user;
+    private $_user;
 
     /**
      * @inheritdoc
@@ -68,13 +66,14 @@ class DatabaseStorage extends Object implements StorageInterface
     public function init()
     {
         parent::init();
-        $this->db = Yii::$app->get($this->dbComponent);
 
-        if (isset($this->userComponent)) {
-            $this->user = Yii::$app->get($this->userComponent);
+        $this->_db = Yii::$app->get($this->dbComponent);
+
+        if ($this->userComponent !== null) {
+            $this->_user = Yii::$app->get($this->userComponent);
         }
 
-        if (!isset($this->table)) {
+        if ($this->table === null) {
             throw new InvalidConfigException('Please specify "table" in cart configuration');
         }
     }
@@ -82,10 +81,11 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @param Cart $cart
      *
-     * @return mixed
+     * @return array|mixed
      */
     public function load(Cart $cart)
     {
+        $items = [];
         $identifier = $this->getIdentifier(Yii::$app->session->getId());
 
         $query = new Query();
@@ -93,9 +93,7 @@ class DatabaseStorage extends Object implements StorageInterface
             ->from($this->table)
             ->where([$this->idField => $identifier]);
 
-        $items = [];
-
-        if ($data = $query->createCommand($this->db)->queryScalar()) {
+        if ($data = $query->createCommand($this->_db)->queryScalar()) {
             $items = unserialize($data);
         }
 
@@ -110,9 +108,11 @@ class DatabaseStorage extends Object implements StorageInterface
     protected function getIdentifier($default)
     {
         $id = $default;
-        if ($this->user instanceof User && !$this->user->getIsGuest()) {
-            $id = $this->user->getId();
+
+        if ($this->_user instanceof User && !$this->_user->getIsGuest()) {
+            $id = $this->_user->getId();
         }
+
         return $id;
     }
 
@@ -128,7 +128,7 @@ class DatabaseStorage extends Object implements StorageInterface
         $items = $cart->getItems();
         $sessionData = serialize($items);
 
-        $command = $this->db->createCommand();
+        $command = $this->_db->createCommand();
 
         if (empty($items) && true === $this->deleteIfEmpty) {
             $command->delete($this->table, [$this->idField => $identifier]);
@@ -140,29 +140,27 @@ class DatabaseStorage extends Object implements StorageInterface
                     {{{$this->idField}}} = :id
             ")->bindValues([
                 ':id' => $identifier,
-                ':val' => $sessionData,
+                ':val' => $sessionData
             ]);
         }
+
         $command->execute();
     }
 
     /**
+     * Assigns cart to logged in user
+     *
      * @param $sourceId
      * @param $destinationId
+     *
+     * @return void
      */
     public function reassign($sourceId, $destinationId)
     {
-        $command = $this->db->createCommand();
+        $command = $this->_db->createCommand();
+
         $command->delete($this->table, [$this->idField => $destinationId])->execute();
-        $command->setSql("
-                UPDATE {{{$this->table}}}
-                SET
-                    {{{$this->idField}}} = :userId
-                WHERE
-                    {{{$this->idField}}} = :sessionId
-            ")->bindValues([
-            ':userId' => $destinationId,
-            ':sessionId' => $sourceId
-        ])->execute();
+
+        $command->update($this->table, [$this->idField => $destinationId], [$this->idField => $sourceId])->execute();
     }
 }

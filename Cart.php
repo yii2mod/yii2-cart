@@ -5,15 +5,14 @@ namespace yii2mod\cart;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
-use yii\web\Session;
 use yii2mod\cart\models\CartItemInterface;
+use yii2mod\cart\storage\StorageInterface;
 
 /**
- * Provides basic cart functionality (adding, removing, clearing, listing items). You can extend this class and
+ * Class Cart provides basic cart functionality (adding, removing, clearing, listing items). You can extend this class and
  * override it in the application configuration to extend/customize the functionality
+ *
  * @package yii2mod\cart
- * @property int $count
- * @property Session $session
  */
 class Cart extends Component
 {
@@ -23,20 +22,21 @@ class Cart extends Component
     const ITEM_PRODUCT = '\yii2mod\cart\models\CartItemInterface';
 
     /**
+     * Override this to provide custom (e.g. database) storage for cart data
+     *
+     * @var string|\yii2mod\cart\storage\StorageInterface
+     */
+    public $storageClass = '\yii2mod\cart\storage\SessionStorage';
+
+    /**
      * @var array cart items
      */
     protected $items;
 
     /**
-     * @var \yii2mod\cart\storage\DatabaseStorage
+     * @var StorageInterface
      */
-    private $storage = null;
-
-    /**
-     * Override this to provide custom (e.g. database) storage for cart data
-     * @var string|\yii2mod\cart\storage\StorageInterface
-     */
-    public $storageClass = '\yii2mod\cart\storage\SessionStorage';
+    private $_storage;
 
     /**
      * @inheritdoc
@@ -78,20 +78,24 @@ class Cart extends Component
     {
         $this->items = [];
         $save && $this->storage->save($this);
+
         return $this;
     }
 
     /**
-     * Setter for the storage component
-     *
-     * @param \yii2mod\cart\storage\StorageInterface|string $storage
-     *
-     * @return Cart
+     * @return mixed
+     */
+    public function getStorage()
+    {
+        return $this->_storage;
+    }
+
+    /**
+     * @param mixed $storage
      */
     public function setStorage($storage)
     {
-        $this->storage = $storage;
-        return $this;
+        $this->_storage = $storage;
     }
 
     /**
@@ -106,13 +110,14 @@ class Cart extends Component
     {
         $this->addItem($element);
         $save && $this->storage->save($this);
+
         return $this;
     }
 
     /**
      * @param \yii2mod\cart\models\CartItemInterface $item
      *
-     * @internal param $quantity
+     * @return void
      */
     protected function addItem(CartItemInterface $item)
     {
@@ -127,6 +132,7 @@ class Cart extends Component
      * @param bool $save
      *
      * @throws \yii\base\InvalidParamException
+     *
      * @return $this
      */
     public function remove($uniqueId, $save = true)
@@ -134,9 +140,11 @@ class Cart extends Component
         if (!isset($this->items[$uniqueId])) {
             throw new InvalidParamException('Item not found');
         }
+
         unset($this->items[$uniqueId]);
 
         $save && $this->storage->save($this);
+
         return $this;
     }
 
@@ -160,6 +168,7 @@ class Cart extends Component
     public function getItems($itemType = null)
     {
         $items = $this->items;
+
         if (!is_null($itemType)) {
             $items = array_filter($items,
                 function ($item) use ($itemType) {
@@ -167,6 +176,7 @@ class Cart extends Component
                     return is_subclass_of($item, $itemType);
                 });
         }
+
         return $items;
     }
 
@@ -185,15 +195,7 @@ class Cart extends Component
         foreach ($this->getItems($itemType) as $model) {
             $sum += $model->{$attribute};
         }
+
         return $sum;
-    }
-
-
-    /**
-     * @return \yii2mod\cart\storage\StorageInterface|string
-     */
-    protected function getStorage()
-    {
-        return $this->storage;
     }
 }

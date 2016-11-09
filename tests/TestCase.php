@@ -4,7 +4,6 @@ namespace yii2mod\cart\tests;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\web\DbSession;
 
 /**
  * This is the base class for all yii framework unit tests.
@@ -76,27 +75,28 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         // Structure :
 
-        $db->createCommand()->createTable('Cart', [
-            'sessionId' => 'string PRIMARY KEY',
-            'cartData' => 'text',
+        $db->createCommand()->createTable('cart', [
+            'sessionId' => 'string primary key',
+            'cartData' => 'text'
         ])->execute();
 
-        $db->createCommand()->createTable('Product', [
+        $db->createCommand()->createTable('product', [
             'id' => 'pk',
             'name' => 'string',
             'price' => 'decimal'
         ])->execute();
 
-        $db->createCommand()->createTable('Session', [
-            'id' => 'CHAR(40) NOT NULL PRIMARY KEY',
+        $db->createCommand()->createTable('session', [
+            'id' => 'char(40) not null primary key',
             'expire' => 'integer',
-            'data' => 'LONGBLOB'
+            'data' => 'longblob'
         ])->execute();
 
         // Data :
-        
-        $db->createCommand()->batchInsert('Product', ['name', 'price'], [
-            ['Product', 10],
+
+        $db->createCommand()->insert('product', [
+            'name' => 'Amazon Kindle',
+            'price' => 100
         ])->execute();
     }
 }

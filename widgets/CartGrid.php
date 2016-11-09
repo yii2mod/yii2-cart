@@ -14,24 +14,18 @@ use yii2mod\cart\Cart;
  */
 class CartGrid extends Widget
 {
-
     /**
-     * @var
+     * @var \yii\data\BaseDataProvider
      */
     public $cartDataProvider;
 
     /**
-     * Grid view columns
-     * @var
+     * @var array GridView columns
      */
-    public $cartColumns = [
-        'id',
-        'label',
-    ];
+    public $cartColumns = ['id', 'label'];
 
     /**
-     * GridView options
-     * @var array
+     * @var array GridView options
      */
     public $gridOptions = [];
 
@@ -41,7 +35,7 @@ class CartGrid extends Widget
     public $itemType = Cart::ITEM_PRODUCT;
 
     /**
-     * Setting defaults
+     * @inheritdoc
      */
     public function init()
     {
@@ -56,7 +50,7 @@ class CartGrid extends Widget
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function run()
     {
@@ -66,7 +60,9 @@ class CartGrid extends Widget
     }
 
     /**
-     * Get grid options
+     * Return grid options
+     *
+     * @return array
      */
     public function getGridOptions()
     {
