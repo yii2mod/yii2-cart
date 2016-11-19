@@ -8,15 +8,26 @@ class m160516_095943_init extends Migration
     {
         $tableOptions = null;
 
-        if ($this->db->driverName === 'mysql') {
+        if ($this->db->driverName === 'mysql' || $this->db->driverName === 'mariadb') {
+            
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
-
-        $this->createTable('{{%Cart}}', [
+            
+            $this->createTable('{{%Cart}}', [
+            'sessionId' => $this->string(),
+            'cartData' => 'longtext',
+            'PRIMARY KEY (`sessionId`)'
+            ], $tableOptions);
+            
+        }else{
+            
+            $this->createTable('{{%Cart}}', [
             'sessionId' => $this->string(),
             'cartData' => $this->text(),
             'PRIMARY KEY (`sessionId`)'
-        ], $tableOptions);
+            ], $tableOptions);
+        }
+
+        
     }
 
     public function down()
