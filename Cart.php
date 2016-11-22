@@ -53,8 +53,6 @@ class Cart extends Component
      *
      * @param string
      * @param string
-     *
-     * @return void
      */
     public function reassign($sessionId, $userId)
     {
@@ -116,8 +114,6 @@ class Cart extends Component
 
     /**
      * @param \yii2mod\cart\models\CartItemInterface $item
-     *
-     * @return void
      */
     protected function addItem(CartItemInterface $item)
     {
@@ -170,16 +166,17 @@ class Cart extends Component
         $items = $this->items;
 
         if (!is_null($itemType)) {
-            $items = array_filter($items,
+            $items = array_filter(
+                $items,
                 function ($item) use ($itemType) {
-                    /** @var $item CartItemInterface */
+                    /* @var $item CartItemInterface */
                     return is_subclass_of($item, $itemType);
-                });
+                }
+            );
         }
 
         return $items;
     }
-
 
     /**
      * Finds all items of type $itemType, sums the values of $attribute of all models and returns the sum.
@@ -187,7 +184,7 @@ class Cart extends Component
      * @param string $attribute
      * @param string|null $itemType
      *
-     * @return integer
+     * @return int
      */
     public function getAttributeTotal($attribute, $itemType = null)
     {

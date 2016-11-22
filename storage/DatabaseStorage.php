@@ -118,8 +118,6 @@ class DatabaseStorage extends Object implements StorageInterface
 
     /**
      * @param \yii2mod\cart\Cart $cart
-     *
-     * @return void
      */
     public function save(Cart $cart)
     {
@@ -140,7 +138,7 @@ class DatabaseStorage extends Object implements StorageInterface
                     {{{$this->idField}}} = :id
             ")->bindValues([
                 ':id' => $identifier,
-                ':val' => $sessionData
+                ':val' => $sessionData,
             ]);
         }
 
@@ -152,8 +150,6 @@ class DatabaseStorage extends Object implements StorageInterface
      *
      * @param $sourceId
      * @param $destinationId
-     *
-     * @return void
      */
     public function reassign($sourceId, $destinationId)
     {

@@ -26,6 +26,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Populates Yii::$app with a new application
      * The application will be destroyed on tearDown() automatically.
+     *
      * @param array $config The application configuration, if needed
      * @param string $appClass name of the application class to create
      */
@@ -38,14 +39,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
             'components' => [
                 'db' => [
                     'class' => 'yii\db\Connection',
-                    'dsn' => 'sqlite::memory:'
+                    'dsn' => 'sqlite::memory:',
                 ],
                 'session' => [
-                    'class' => 'yii\web\DbSession'
+                    'class' => 'yii\web\DbSession',
                 ],
                 'cart' => [
-                    'class' => 'yii2mod\cart\Cart'
-                ]
+                    'class' => 'yii2mod\cart\Cart',
+                ],
             ],
         ], $config));
     }
@@ -77,26 +78,26 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $db->createCommand()->createTable('cart', [
             'sessionId' => 'string primary key',
-            'cartData' => 'text'
+            'cartData' => 'text',
         ])->execute();
 
         $db->createCommand()->createTable('product', [
             'id' => 'pk',
             'name' => 'string',
-            'price' => 'decimal'
+            'price' => 'decimal',
         ])->execute();
 
         $db->createCommand()->createTable('session', [
             'id' => 'char(40) not null primary key',
             'expire' => 'integer',
-            'data' => 'longblob'
+            'data' => 'longblob',
         ])->execute();
 
         // Data :
 
         $db->createCommand()->insert('product', [
             'name' => 'Amazon Kindle',
-            'price' => 100
+            'price' => 100,
         ])->execute();
     }
 }

@@ -10,6 +10,7 @@ use yii2mod\cart\Cart;
 
 /**
  * Class Cart
+ *
  * @package yii2mod\cart\widgets
  */
 class CartGrid extends Widget
@@ -68,7 +69,7 @@ class CartGrid extends Widget
     {
         return ArrayHelper::merge($this->gridOptions, [
             'dataProvider' => $this->cartDataProvider,
-            'columns' => $this->cartColumns
+            'columns' => $this->cartColumns,
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace yii2mod\cart\models;
 
 /**
  * All objects that can be added to the cart must implement this interface
+ *
  * @package yii2mod\cart\models
  */
 interface CartItemInterface
@@ -11,7 +12,7 @@ interface CartItemInterface
     /**
      * Returns the price for the cart item
      *
-     * @return integer
+     * @return int
      */
     public function getPrice();
 

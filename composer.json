@@ -7,10 +7,17 @@
         {
             "name": "Dmitry Semenov",
             "email": "disemx@gmail.com"
+        },
+        {
+            "name": "Igor Chepurnoy",
+            "email": "igorzfort@gmail.com"
         }
     ],
     "require": {
         "yiisoft/yii2": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.7"
     },
     "autoload": {
         "psr-4": {

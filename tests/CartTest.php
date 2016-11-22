@@ -7,6 +7,7 @@ use yii2mod\cart\tests\data\Product;
 
 /**
  * Class CartTest
+ *
  * @package yii2mod\cart\tests
  */
 class CartTest extends TestCase
