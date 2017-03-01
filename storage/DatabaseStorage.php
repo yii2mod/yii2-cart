@@ -33,7 +33,7 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @var string Name of the cart table
      */
-    public $table = 'cart';
+    public $table = '{{%cart}}';
 
     /**
      * @var string Name of the
