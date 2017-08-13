@@ -1,5 +1,10 @@
-Shopping cart extension for Yii2
-===============================
+<p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
+    <h1 align="center">Yii2 Shopping Cart Extension</h1>
+    <br>
+</p>
 
 This extension adds shopping cart for Yii framework 2.0
 
