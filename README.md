@@ -127,11 +127,11 @@ $items = $cart->getItems(Cart::ITEM_PRODUCT);
 
 // loop through cart items
 foreach ($items as $item) {
-	// access any attribute/method from the model
-	var_dump($item->getAttributes());
+    // access any attribute/method from the model
+    var_dump($item->getAttributes());
 
-	// remove an item from the cart by its ID
-	$cart->remove($item->uniqueId)
+    // remove an item from the cart by its ID
+    $cart->remove($item->uniqueId)
 }
 ```
 
