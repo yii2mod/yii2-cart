@@ -63,7 +63,7 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -81,7 +81,7 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @param Cart $cart
      *
-     * @return array|mixed
+     * @return mixed
      */
     public function load(Cart $cart)
     {
@@ -101,11 +101,11 @@ class DatabaseStorage extends Object implements StorageInterface
     }
 
     /**
-     * @param string $default
+     * @param int $default
      *
-     * @return string
+     * @return int
      */
-    protected function getIdentifier($default)
+    protected function getIdentifier(int $default): int
     {
         $id = $default;
 
@@ -119,7 +119,7 @@ class DatabaseStorage extends Object implements StorageInterface
     /**
      * @param \yii2mod\cart\Cart $cart
      */
-    public function save(Cart $cart)
+    public function save(Cart $cart): void
     {
         $identifier = $this->getIdentifier(Yii::$app->session->getId());
 
@@ -151,7 +151,7 @@ class DatabaseStorage extends Object implements StorageInterface
      * @param $sourceId
      * @param $destinationId
      */
-    public function reassign($sourceId, $destinationId)
+    public function reassign($sourceId, $destinationId): void
     {
         $command = $this->_db->createCommand();
 

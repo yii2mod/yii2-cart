@@ -41,7 +41,7 @@ class Cart extends Component
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         $this->clear(false);
         $this->setStorage(Yii::createObject($this->storageClass));
@@ -54,7 +54,7 @@ class Cart extends Component
      * @param string
      * @param string
      */
-    public function reassign($sessionId, $userId)
+    public function reassign($sessionId, $userId): void
     {
         if (get_class($this->getStorage()) === 'yii2mod\cart\storage\DatabaseStorage') {
             if (!empty($this->items)) {
@@ -72,7 +72,7 @@ class Cart extends Component
      *
      * @return $this
      */
-    public function clear($save = true)
+    public function clear($save = true): self
     {
         $this->items = [];
         $save && $this->storage->save($this);
@@ -81,9 +81,9 @@ class Cart extends Component
     }
 
     /**
-     * @return mixed
+     * @return StorageInterface
      */
-    public function getStorage()
+    public function getStorage(): StorageInterface
     {
         return $this->_storage;
     }
@@ -91,7 +91,7 @@ class Cart extends Component
     /**
      * @param mixed $storage
      */
-    public function setStorage($storage)
+    public function setStorage($storage): void
     {
         $this->_storage = $storage;
     }
@@ -104,7 +104,7 @@ class Cart extends Component
      *
      * @return $this
      */
-    public function add(CartItemInterface $element, $save = true)
+    public function add(CartItemInterface $element, $save = true): self
     {
         $this->addItem($element);
         $save && $this->storage->save($this);
@@ -115,7 +115,7 @@ class Cart extends Component
     /**
      * @param \yii2mod\cart\models\CartItemInterface $item
      */
-    protected function addItem(CartItemInterface $item)
+    protected function addItem(CartItemInterface $item): void
     {
         $uniqueId = $item->getUniqueId();
         $this->items[$uniqueId] = $item;
@@ -131,7 +131,7 @@ class Cart extends Component
      *
      * @return $this
      */
-    public function remove($uniqueId, $save = true)
+    public function remove($uniqueId, $save = true): self
     {
         if (!isset($this->items[$uniqueId])) {
             throw new InvalidParamException('Item not found');
@@ -149,7 +149,7 @@ class Cart extends Component
      *
      * @return int
      */
-    public function getCount($itemType = null)
+    public function getCount($itemType = null): int
     {
         return count($this->getItems($itemType));
     }
@@ -161,7 +161,7 @@ class Cart extends Component
      *
      * @return CartItemInterface[]
      */
-    public function getItems($itemType = null)
+    public function getItems($itemType = null): array
     {
         $items = $this->items;
 
@@ -186,7 +186,7 @@ class Cart extends Component
      *
      * @return int
      */
-    public function getAttributeTotal($attribute, $itemType = null)
+    public function getAttributeTotal($attribute, $itemType = null): int
     {
         $sum = 0;
         foreach ($this->getItems($itemType) as $model) {

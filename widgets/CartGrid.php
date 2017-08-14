@@ -38,7 +38,7 @@ class CartGrid extends Widget
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         $cart = Yii::$app->get('cart');
 
@@ -65,7 +65,7 @@ class CartGrid extends Widget
      *
      * @return array
      */
-    public function getGridOptions()
+    public function getGridOptions(): array
     {
         return ArrayHelper::merge($this->gridOptions, [
             'dataProvider' => $this->cartDataProvider,

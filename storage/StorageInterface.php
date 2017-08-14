@@ -14,12 +14,12 @@ interface StorageInterface
     /**
      * @param Cart $cart
      *
-     * @return array|mixed
+     * @return mixed
      */
     public function load(Cart $cart);
 
     /**
      * @param Cart $cart
      */
-    public function save(Cart $cart);
+    public function save(Cart $cart): void;
 }

@@ -14,19 +14,19 @@ interface CartItemInterface
      *
      * @return int
      */
-    public function getPrice();
+    public function getPrice(): int;
 
     /**
      * Returns the label for the cart item (displayed in cart etc)
      *
-     * @return string
+     * @return int|string
      */
     public function getLabel();
 
     /**
      * Returns unique id to associate cart item with product
      *
-     * @return string
+     * @return int|string
      */
     public function getUniqueId();
 }

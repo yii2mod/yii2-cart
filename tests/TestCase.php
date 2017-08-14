@@ -8,11 +8,12 @@ use yii\helpers\ArrayHelper;
 /**
  * This is the base class for all yii framework unit tests.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected function setUp()
     {
         parent::setUp();
+
         $this->mockApplication();
 
         $this->setupTestDbData();

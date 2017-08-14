@@ -17,15 +17,15 @@ class Product extends ActiveRecord implements CartItemInterface
     /**
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'product';
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }
@@ -33,7 +33,7 @@ class Product extends ActiveRecord implements CartItemInterface
     /**
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->name;
     }
@@ -41,7 +41,7 @@ class Product extends ActiveRecord implements CartItemInterface
     /**
      * @return mixed
      */
-    public function getUniqueId()
+    public function getUniqueId(): int
     {
         return $this->id;
     }

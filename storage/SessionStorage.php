@@ -35,7 +35,7 @@ class SessionStorage extends Object implements StorageInterface
     /**
      * @inheritdoc
      */
-    public function save(Cart $cart)
+    public function save(Cart $cart): void
     {
         $sessionData = serialize($cart->getItems());
 
@@ -43,7 +43,7 @@ class SessionStorage extends Object implements StorageInterface
     }
 
     /**
-     * @return \yii\web\Session
+     * @return object
      */
     public function getSession()
     {
