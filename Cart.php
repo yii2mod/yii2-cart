@@ -41,7 +41,7 @@ class Cart extends Component
     /**
      * @inheritdoc
      */
-    public function init(): void
+    public function init()
     {
         $this->clear(false);
         $this->setStorage(Yii::createObject($this->storageClass));
@@ -54,7 +54,7 @@ class Cart extends Component
      * @param string
      * @param string
      */
-    public function reassign($sessionId, $userId): void
+    public function reassign($sessionId, $userId)
     {
         if (get_class($this->getStorage()) === 'yii2mod\cart\storage\DatabaseStorage') {
             if (!empty($this->items)) {
@@ -91,7 +91,7 @@ class Cart extends Component
     /**
      * @param mixed $storage
      */
-    public function setStorage($storage): void
+    public function setStorage($storage)
     {
         $this->_storage = $storage;
     }
@@ -115,7 +115,7 @@ class Cart extends Component
     /**
      * @param \yii2mod\cart\models\CartItemInterface $item
      */
-    protected function addItem(CartItemInterface $item): void
+    protected function addItem(CartItemInterface $item)
     {
         $uniqueId = $item->getUniqueId();
         $this->items[$uniqueId] = $item;

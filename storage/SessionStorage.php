@@ -35,7 +35,7 @@ class SessionStorage extends Object implements StorageInterface
     /**
      * @inheritdoc
      */
-    public function save(Cart $cart): void
+    public function save(Cart $cart)
     {
         $sessionData = serialize($cart->getItems());
 

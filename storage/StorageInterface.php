@@ -21,5 +21,5 @@ interface StorageInterface
     /**
      * @param Cart $cart
      */
-    public function save(Cart $cart): void;
+    public function save(Cart $cart);
 }

@@ -38,7 +38,7 @@ class CartGrid extends Widget
     /**
      * @inheritdoc
      */
-    public function init(): void
+    public function init()
     {
         $cart = Yii::$app->get('cart');
 
