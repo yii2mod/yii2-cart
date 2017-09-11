@@ -8,9 +8,10 @@
 
 This extension adds shopping cart for Yii framework 2.0
 
+
 [![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-cart/v/stable)](https://packagist.org/packages/yii2mod/yii2-cart) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-cart/downloads)](https://packagist.org/packages/yii2mod/yii2-cart) [![License](https://poser.pugx.org/yii2mod/yii2-cart/license)](https://packagist.org/packages/yii2mod/yii2-cart)
-[![Code Climate](https://codeclimate.com/github/yii2mod/yii2-cart/badges/gpa.svg)](https://codeclimate.com/github/yii2mod/yii2-cart)
 [![Build Status](https://travis-ci.org/yii2mod/yii2-cart.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-cart)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/?branch=master)
 
 Installation
 ------------
@@ -127,11 +128,11 @@ $items = $cart->getItems(Cart::ITEM_PRODUCT);
 
 // loop through cart items
 foreach ($items as $item) {
-	// access any attribute/method from the model
-	var_dump($item->getAttributes());
+    // access any attribute/method from the model
+    var_dump($item->getAttributes());
 
-	// remove an item from the cart by its ID
-	$cart->remove($item->uniqueId)
+    // remove an item from the cart by its ID
+    $cart->remove($item->uniqueId)
 }
 ```
 
