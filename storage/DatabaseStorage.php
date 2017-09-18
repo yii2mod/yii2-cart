@@ -105,7 +105,7 @@ class DatabaseStorage extends Object implements StorageInterface
      *
      * @return int
      */
-    protected function getIdentifier(int $default): int
+    protected function getIdentifier($default)
     {
         $id = $default;
 
