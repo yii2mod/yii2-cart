@@ -170,7 +170,7 @@ class Cart extends Component
                 $items,
                 function ($item) use ($itemType) {
                     /* @var $item CartItemInterface */
-                    return is_subclass_of($item, $itemType);
+                    return is_a($item, $itemType);
                 }
             );
         }
