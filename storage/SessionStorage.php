@@ -11,7 +11,7 @@ use yii2mod\cart\Cart;
  *
  * @property \yii\web\Session session
  */
-class SessionStorage extends Object implements StorageInterface
+class SessionStorage extends BaseObject implements StorageInterface
 {
     /**
      * @var string
