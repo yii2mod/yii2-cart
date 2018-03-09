@@ -3,7 +3,7 @@
 namespace yii2mod\cart\storage;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii2mod\cart\Cart;
 
 /**
@@ -11,7 +11,7 @@ use yii2mod\cart\Cart;
  *
  * @property \yii\web\Session session
  */
-class SessionStorage extends Object implements StorageInterface
+class SessionStorage extends BaseObject implements StorageInterface
 {
     /**
      * @var string
