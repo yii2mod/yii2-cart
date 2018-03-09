@@ -136,3 +136,14 @@ foreach ($items as $item) {
 }
 ```
 
+#### Get Number of Products in Cart
+
+You can use the `getCount` to get count as this example:
+
+```php
+// get count of all products in cart:
+$items = $cart->getCount();
+
+// get count of Specific Item Type:
+$items = $cart->getCount(Cart::ITEM_PRODUCT);
+```
