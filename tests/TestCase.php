@@ -4,6 +4,7 @@ namespace yii2mod\cart\tests;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii2mod\cart\tests\data\Session;
 
 /**
  * This is the base class for all yii framework unit tests.
@@ -43,7 +44,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
                     'dsn' => 'sqlite::memory:',
                 ],
                 'session' => [
-                    'class' => 'yii\web\DbSession',
+                    'class' => Session::class,
                 ],
                 'cart' => [
                     'class' => 'yii2mod\cart\Cart',
