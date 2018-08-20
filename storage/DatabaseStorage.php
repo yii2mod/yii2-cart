@@ -3,8 +3,8 @@
 namespace yii2mod\cart\storage;
 
 use Yii;
+use yii\base\BaseObject;
 use yii\base\InvalidConfigException;
-use yii\base\Object;
 use yii\db\Connection;
 use yii\db\Query;
 use yii\web\User;
@@ -18,7 +18,7 @@ use yii2mod\cart\Cart;
  *
  * @package yii2mod\cart\storage
  */
-class DatabaseStorage extends Object implements StorageInterface
+class DatabaseStorage extends BaseObject implements StorageInterface
 {
     /**
      * @var string Name of the user component
