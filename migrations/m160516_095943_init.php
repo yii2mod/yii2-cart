@@ -15,8 +15,8 @@ class m160516_095943_init extends Migration
         $this->createTable('{{%Cart}}', [
             'sessionId' => $this->string(),
             'cartData' => $this->text(),
-            'PRIMARY KEY (`sessionId`)',
         ], $tableOptions);
+        $this->addPrimaryKey('cart_pk', '{{%Cart}}', 'sessionId');
     }
 
     public function down()
