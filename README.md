@@ -13,6 +13,11 @@ This extension adds shopping cart for Yii framework 2.0
 [![Build Status](https://travis-ci.org/yii2mod/yii2-cart.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-cart)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yii2mod/yii2-cart/?branch=master)
 
+## Support us
+
+Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/yii2mod). 
+All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
+
 Installation
 ------------
 
@@ -147,8 +152,3 @@ $items = $cart->getCount();
 // get count of Specific Item Type:
 $items = $cart->getCount(Cart::ITEM_PRODUCT);
 ```
-
-## Support us
-
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/yii2mod). 
-All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
